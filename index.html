@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quick Cakes – Freshly Baked Happiness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #F5EFE6;
+      --beige: #EAD7C5;
+      --pink: #F7B7A3;
+      --brown: #7A4E3A;
+      --dark: #3A2E2A;
+      --pastel-yellow: #FFF3C4;
+      --pastel-mint: #C8EFE4;
+      --pastel-lavender: #E8D5F5;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--dark);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: var(--cream);
+      border-bottom: 1px solid var(--beige);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(122,78,58,.08);
+    }
+    .navbar-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--brown) !important;
+    }
+    .logo-circle {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--beige);
+      border: 2px solid var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .navbar-nav .nav-link {
+      font-family: 'Poppins', sans-serif;
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--dark) !important;
+      padding: 6px 14px !important;
+      border-radius: 20px;
+      transition: background .2s, color .2s;
+    }
+    .navbar-nav .nav-link:hover {
+      background: var(--beige);
+      color: var(--brown) !important;
+    }
+    .btn-order-nav {
+      background: var(--pink);
+      color: var(--dark) !important;
+      border: none;
+      border-radius: 24px;
+      font-size: .88rem;
+      font-weight: 600;
+      padding: 8px 22px;
+      transition: transform .18s, box-shadow .18s;
+      animation: navBtnPulse 3s ease-in-out infinite;
+    }
+    .btn-order-nav:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 18px rgba(247,183,163,.6);
+    }
+    @keyframes navBtnPulse {
+      0%,100%{ box-shadow: 0 0 0 0 rgba(247,183,163,.4); }
+      50%{ box-shadow: 0 0 0 8px rgba(247,183,163,0); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #FDF6EE 0%, #F5EFE6 60%, #EAD7C5 100%);
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 32px;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brown);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--dark);
+      line-height: 1.18;
+      margin-bottom: 16px;
+    }
+    .hero h1 em {
+      color: var(--brown);
+      font-style: italic;
+    }
+    .hero p {
+      font-size: .97rem;
+      color: #6B5347;
+      max-width: 360px;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+    .btn-hero-primary {
+      background: var(--pink);
+      color: var(--dark);
+      border: none;
+      border-radius: 28px;
+      font-weight: 600;
+      font-size: .92rem;
+      padding: 12px 28px;
+      margin-right: 12px;
+      transition: transform .2s, box-shadow .2s;
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+    .btn-hero-primary:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 24px rgba(247,183,163,.55); }
+    @keyframes bounce {
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-5px); }
+    }
+    .btn-hero-secondary {
+      background: transparent;
+      color: var(--brown);
+      border: 2px solid var(--brown);
+      border-radius: 28px;
+      font-weight: 600;
+      font-size: .92rem;
+      padding: 10px 26px;
+      transition: background .2s, color .2s;
+    }
+    .btn-hero-secondary:hover { background: var(--brown); color: var(--cream); }
+
+    /* Mascot */
+    .mascot-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mascot-circle {
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      border: 3px dashed var(--brown);
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      position: relative;
+      animation: mascotPop .8s cubic-bezier(.34,1.56,.64,1) both;
+      box-shadow: 0 12px 40px rgba(122,78,58,.12);
+    }
+    @keyframes mascotPop {
+      0%{ transform: scale(0) rotate(-10deg); opacity: 0; }
+      100%{ transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .mascot-label {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--brown);
+      color: var(--cream);
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      padding: 4px 20px;
+      border-radius: 16px;
+      white-space: nowrap;
+    }
+
+    /* Floating pastries */
+    .float-pastry {
+      position: absolute;
+      font-size: 2.8rem;
+      opacity: .18;
+      animation: floatLoop 6s ease-in-out infinite;
+      pointer-events: none;
+      user-select: none;
+    }
+    .float-pastry:nth-child(1){ top: 8%; left: 3%; animation-delay: 0s; }
+    .float-pastry:nth-child(2){ top: 60%; left: 1%; animation-delay: 1.2s; font-size:2rem; }
+    .float-pastry:nth-child(3){ top: 20%; right: 2%; animation-delay: .7s; }
+    .float-pastry:nth-child(4){ top: 70%; right: 4%; animation-delay: 2s; font-size:2.2rem; }
+    .float-pastry:nth-child(5){ top: 45%; left: 48%; animation-delay: 1.8s; font-size:1.8rem; }
+    @keyframes floatLoop {
+      0%,100%{ transform: translateY(0) rotate(0deg); }
+      50%{ transform: translateY(-18px) rotate(8deg); }
+    }
+
+    /* Slider dots */
+    .hero-dots { display: flex; gap: 8px; margin-top: 28px; }
+    .hero-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--beige);
+      border: 2px solid var(--brown);
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .hero-dot.active { background: var(--brown); }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 64px 0; }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .section-hearts {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin-bottom: 36px;
+    }
+    .section-hearts::before,
+    .section-hearts::after {
+      content: '♥';
+      color: var(--pink);
+      font-size: 1rem;
+    }
+    .divider-line {
+      width: 60px; height: 2px;
+      background: var(--pink);
+      border-radius: 2px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── BEST SELLERS ── */
+    .bestsellers { background: var(--white); }
+    .product-card {
+      background: var(--cream);
+      border: 1.5px solid var(--beige);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      transition: transform .22s, box-shadow .22s;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(122,78,58,.13); }
+    .product-img-wrap {
+      width: 100%; aspect-ratio: 1/1;
+      background: var(--beige);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-img-wrap::after {
+      content: '';
+      position: absolute;
+      top: -60%; left: -60%;
+      width: 60%; height: 200%;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%);
+      transform: rotate(15deg);
+      transition: left .5s;
+    }
+    .product-card:hover .product-img-wrap::after { left: 130%; }
+    .product-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+    .product-price { color: var(--brown); font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; }
+    .btn-cart {
+      background: var(--pink);
+      color: var(--dark);
+      border: none;
+      border-radius: 20px;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 7px 18px;
+      width: 100%;
+      transition: background .2s, transform .15s;
+    }
+    .btn-cart:hover { background: var(--brown); color: var(--cream); transform: scale(1.03); }
+
+    /* ── CATEGORIES ── */
+    .categories { background: var(--cream); }
+    .cat-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1.5px solid var(--beige);
+      border-radius: 28px;
+      padding: 10px 22px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--dark);
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .cat-pill:hover { background: var(--pink); border-color: var(--pink); transform: scale(1.04); }
+    .cat-icon { font-size: 1.3rem; }
+
+    /* ── WHY CHOOSE ── */
+    .why { background: var(--beige); }
+    .why-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      border: 1.5px solid rgba(122,78,58,.1);
+      height: 100%;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .why-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(122,78,58,.1); }
+    .why-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .why-title { font-weight: 600; font-size: .97rem; margin-bottom: 4px; }
+    .why-sub { font-size: .82rem; color: #8B6D5E; }
+
+    /* ── CRAFTED BANNER ── */
+    .crafted {
+      background: var(--cream);
+      padding: 40px 0;
+    }
+    .crafted-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      background: var(--beige);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .crafted-img {
+      width: 220px; min-height: 200px;
+      background: var(--beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      flex-shrink: 0;
+    }
+    .crafted-text { padding: 40px 32px; }
+    .crafted-text h2 { font-size: 1.8rem; margin-bottom: 10px; }
+    .crafted-text p { font-size: .9rem; color: #6B5347; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(120deg, #F7B7A3 0%, #EAD7C5 100%);
+      padding: 48px 0;
+    }
+    .btn-place {
+      background: var(--dark);
+      color: var(--cream);
+      border: none;
+      border-radius: 28px;
+      font-weight: 600;
+      font-size: .95rem;
+      padding: 12px 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .2s, box-shadow .2s;
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+    .btn-place:hover { background: var(--brown); transform: translateY(-3px); box-shadow: 0 8px 22px rgba(58,46,42,.3); }
+
+    /* ── ORDER FORM ── */
+    .order-section { background: var(--white); }
+    .form-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 36px 32px;
+      border: 1.5px solid var(--beige);
+    }
+    .form-card h3 { font-size: 1.4rem; margin-bottom: 24px; text-align: center; }
+    .form-label { font-size: .82rem; font-weight: 600; color: var(--brown); margin-bottom: 4px; }
+    .form-control {
+      background: var(--white);
+      border: 1.5px solid var(--beige);
+      border-radius: 10px;
+      font-size: .88rem;
+      padding: 10px 14px;
+      color: var(--dark);
+      transition: border-color .2s;
+    }
+    .form-control:focus { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(247,183,163,.25); outline: none; }
+    .address-heading {
+      font-size: .88rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--brown);
+      background: var(--beige);
+      border-radius: 8px;
+      padding: 6px 0;
+      margin-bottom: 12px;
+    }
+    .btn-submit {
+      background: var(--pink);
+      color: var(--dark);
+      border: none;
+      border-radius: 28px;
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 13px 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-submit:hover { background: var(--brown); color: var(--cream); transform: scale(1.02); }
+
+    /* ── FAQ ── */
+    .faq-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 36px 32px;
+      border: 1.5px solid var(--beige);
+    }
+    .faq-card h3 { font-size: 1.4rem; margin-bottom: 24px; text-align: center; }
+    .faq-item {
+      border-bottom: 1px solid var(--beige);
+      padding: 14px 0;
+      cursor: pointer;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .88rem;
+      font-weight: 500;
+    }
+    .faq-icon {
+      width: 24px; height: 24px;
+      border: 2px solid var(--brown);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--brown);
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: background .2s, color .2s;
+    }
+    .faq-item.open .faq-icon { background: var(--brown); color: var(--cream); }
+    .faq-a {
+      font-size: .82rem;
+      color: #8B6D5E;
+      margin-top: 8px;
+      display: none;
+      line-height: 1.65;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--cream); }
+    .review-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 22px;
+      border: 1.5px solid var(--beige);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .review-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(122,78,58,.1); }
+    .review-stars { color: #F5A623; font-size: .95rem; margin-bottom: 10px; letter-spacing: 2px; }
+    .review-text { font-size: .85rem; color: var(--dark); line-height: 1.6; margin-bottom: 14px; font-style: italic; }
+    .reviewer {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .reviewer-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--beige);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      border: 2px solid var(--pink);
+    }
+    .reviewer-name { font-weight: 600; font-size: .85rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 56px 0 0;
+    }
+    .footer-brand { margin-bottom: 16px; }
+    .footer-logo-circle {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--beige);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+    .footer-brand h5 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 6px; }
+    .footer-brand p { font-size: .8rem; color: #A08070; line-height: 1.6; max-width: 200px; }
+    .footer-heading { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--pink); margin-bottom: 16px; }
+    footer a { color: #C4A090; font-size: .84rem; text-decoration: none; display: block; margin-bottom: 8px; }
+    footer a:hover { color: var(--pink); }
+    .contact-line { display: flex; align-items: flex-start; gap: 8px; font-size: .84rem; color: #C4A090; margin-bottom: 8px; }
+    .contact-icon { color: var(--pink); flex-shrink: 0; margin-top: 2px; }
+    .social-row { display: flex; gap: 10px; margin-top: 8px; }
+    .social-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid #5A4E48;
+      display: flex; align-items: center; justify-content: center;
+      color: #C4A090;
+      font-size: .85rem;
+      text-decoration: none;
+      transition: background .2s, border-color .2s;
+    }
+    .social-btn:hover { background: var(--pink); border-color: var(--pink); color: var(--dark); }
+    .footer-bottom {
+      border-top: 1px solid #5A4E48;
+      text-align: center;
+      padding: 18px 0;
+      font-size: .8rem;
+      color: #7A6A60;
+      margin-top: 40px;
+    }
+
+    /* ── PAGE LOAD ANIMATION ── */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Responsive tweaks */
+    @media (max-width: 768px) {
+      .mascot-circle { width: 180px; height: 180px; font-size: 4.5rem; }
+      .crafted-inner { flex-direction: column; }
+      .crafted-img { width: 100%; min-height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ FLOATING PASTRIES (background layer) ══ -->
+<div aria-hidden="true" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;">
+  <div class="float-pastry">🍩</div>
+  <div class="float-pastry">🎂</div>
+  <div class="float-pastry">🥐</div>
+  <div class="float-pastry">🧁</div>
+  <div class="float-pastry">🍰</div>
+</div>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container" style="max-width:1200px;">
+    <a class="navbar-brand" href="#">
+      <div class="logo-circle"><img src="img/logo.svg" alt="QC"></div>
+      Quick Cakes
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#order">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+      <a href="#order" class="nav-link btn-order-nav">Order Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" style="position:relative;z-index:1;">
+  <div class="hero-inner">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6 col-md-7 fade-in-up">
+        <span class="hero-tag">🍰 Artisan Bakery</span>
+        <h1>Freshly Baked <em>Happiness,</em> Delivered Fast</h1>
+        <p>Delicious treats made with love and the finest ingredients — straight from our oven to your doorstep.</p>
+        <a href="#order" class="btn btn-hero-primary">Order Now</a>
+        <a href="#menu" class="btn btn-hero-secondary">View Menu</a>
+       
+      </div>
+      <div class="col-lg-6 col-md-5 d-flex justify-content-center">
+  <div class="mascot-wrap">
+    <div class="mascot-circle">
+      <!-- Replace the src below with your SVG file path -->
+      <img 
+        src="img/logo.svg" 
+        alt="Quick Cakes Mascot"
+        style="width: 150%; height: 150%; object-fit: contain;"
+      />
+      
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BEST SELLERS ══ -->
+<section class="bestsellers" id="menu">
+  <div class="container" style="max-width:1200px;">
+    <div class="section-hearts">
+      <h2 class="section-title mb-0">Our Best Sellers</h2>
+    </div>
+    <div class="divider-line"></div>
+    <table class="w-100" style="border-collapse:separate;border-spacing:0;"><tr>
+      <td style="width:25%;padding:0 10px;" class="fade-in-up">
+        <div class="product-card">
+          <div class="product-img-wrap"> <img 
+      src="img/choclate-cake.jpg" 
+      alt="Chocolate Cake"
+      style="
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      "
+    /></div>
+          <div class="product-name">Chocolate Cake</div>
+          <div class="product-price">₹589–₹840</div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </td>
+      <td style="width:25%;padding:0 10px;" class="fade-in-up" style="transition-delay:.1s">
+        <div class="product-card">
+          <div class="product-img-wrap">
+             <img 
+      src="img/donut.jpg" 
+      alt="Glazed Donut"
+      style="
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      "
+    /></div>
+          <div class="product-name">Glazed Donut</div>
+          <div class="product-price">₹2,500</div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </td>
+      <td style="width:25%;padding:0 10px;" class="fade-in-up" style="transition-delay:.2s">
+        <div class="product-card">
+          <div class="product-img-wrap"> <img 
+      src="img/pastry.jpg" 
+      alt="Fruit Pastry"
+      style="
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      "
+    /></div>
+          <div class="product-name">Fruit Pastry</div>
+          <div class="product-price">₹1,149</div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </td>
+      <td style="width:25%;padding:0 10px;" class="fade-in-up" style="transition-delay:.3s">
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <img 
+      src="img/cupcake.jpg" 
+      alt="Cupcake"
+      style="
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      "
+    />
+          </div>
+          <div class="product-name">Cupcake</div>
+          <div class="product-price">₹799</div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </td>
+    </tr></table>
+  </div>
+</section>
+
+<!-- ══ CATEGORIES ══ -->
+<section class="categories">
+  <div class="container" style="max-width:1200px;">
+    <h2 class="section-title mb-4 fade-in-up">Shop by Category</h2>
+    <table class="w-100" style="border-collapse:separate;border-spacing:12px;"><tr>
+      <td><div class="cat-pill"><span class="cat-icon">🎂</span> Cakes</div></td>
+      <td><div class="cat-pill"><span class="cat-icon">🍩</span> Donuts</div></td>
+      <td><div class="cat-pill"><span class="cat-icon">🥐</span> Pastries</div></td>
+      <td><div class="cat-pill"><span class="cat-icon">🍪</span> Cookies</div></td>
+      <td><div class="cat-pill"><span class="cat-icon">🎂</span> Custom Cakes</div></td>
+    </tr></table>
+  </div>
+</section>
+
+<!-- ══ WHY CHOOSE ══ -->
+<section class="why">
+  <div class="container" style="max-width:1200px;">
+    <h2 class="section-title mb-2 fade-in-up">Why Choose Quick Cakes?</h2>
+    <div class="divider-line mb-5"></div>
+    <div class="row g-4">
+      <div class="col-md-4 fade-in-up">
+        <div class="why-card">
+          <div class="why-icon">🚚</div>
+          <div class="why-title">Fast Delivery</div>
+          <div class="why-sub">On time, every time</div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in-up">
+        <div class="why-card">
+          <div class="why-icon">🧁</div>
+          <div class="why-title">Fresh Daily</div>
+          <div class="why-sub">Baked every morning</div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in-up">
+        <div class="why-card">
+          <div class="why-icon">❤️</div>
+          <div class="why-title">Handmade with Love</div>
+          <div class="why-sub">Crafted with care</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CRAFTED BANNER ══ -->
+<section class="crafted">
+  <div class="container" style="max-width:1200px;padding:0 32px;">
+    <div class="row g-0 align-items-stretch" style="background:var(--beige);border-radius:24px;overflow:hidden;">
+      <div class="col-md-3 d-flex align-items-center justify-content-center" style="background:var(--cream);padding:32px;font-size:5rem;">
+        🍰
+      </div>
+      <div class="col-md-6 d-flex align-items-center justify-content-center p-5 text-center fade-in-up">
+        <div>
+          <h2 style="font-size:2rem;margin-bottom:12px;">Crafted with Love<br>&amp; Precision</h2>
+          <p style="font-size:.9rem;color:#6B5347;line-height:1.7;">From our oven to your doorstep — every treat tells a story of passion and artistry.</p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex align-items-center justify-content-center" style="background:var(--cream);padding:32px;font-size:5rem;">
+        🎂
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BANNER ══ -->
+<section class="cta-banner">
+  <div class="container" style="max-width:1200px;">
+    <table class="w-100"><tr>
+      <td style="width:60px;font-size:3rem;vertical-align:middle;">🧁</td>
+      <td style="vertical-align:middle;padding-left:20px;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;margin:0;color:var(--dark);">Ready to order your favorite dessert?</h3>
+      </td>
+      <td style="text-align:right;vertical-align:middle;">
+        <a href="#order" class="btn-place">Place Your Order <span>→</span></a>
+      </td>
+    </tr></table>
+  </div>
+</section>
+
+<!-- ══ ORDER + FAQ ══ -->
+<section class="order-section" id="order">
+  <div class="container" style="max-width:1200px;">
+    <div class="row g-5">
+
+      <!-- Order Form -->
+      <div class="col-lg-6 fade-in-up">
+        <div class="form-card">
+          <h3>Place Your Order</h3>
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Enter your name"/>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" placeholder="Enter your phone number"/>
+          </div>
+          <div class="address-heading">Delivery Address</div>
+          <table class="w-100 mb-3" style="border-collapse:separate;border-spacing:0 10px;">
+            <tr>
+              <td style="padding-right:8px;">
+                <label class="form-label">House No.</label>
+                <input type="text" class="form-control" placeholder="Enter house no."/>
+              </td>
+              <td style="padding-left:8px;">
+                <label class="form-label">Landmark</label>
+                <input type="text" class="form-control" placeholder="Enter landmark"/>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-right:8px;">
+                <label class="form-label">PIN Code</label>
+                <input type="text" class="form-control" placeholder="Enter PIN code"/>
+              </td>
+              <td style="padding-left:8px;">
+                <label class="form-label">State</label>
+                <input type="text" class="form-control" placeholder="Enter state"/>
+              </td>
+            </tr>
+          </table>
+          <button class="btn-submit">🛍️ Place Order</button>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="col-lg-6 fade-in-up">
+        <div class="faq-card">
+          <h3>Frequently Asked Questions</h3>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Do you bake fresh every day? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes! We bake fresh every morning starting at 4 AM to ensure the softest, most delicious treats reach you daily.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Do you use preservatives or artificial ingredients? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Never. We use only 100% natural ingredients — no artificial preservatives, colours, or flavours. Ever.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Can I place an order online? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Absolutely! Just fill in the order form on this page and we'll confirm your order within 30 minutes.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Do you offer delivery services? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes, we deliver to all major areas in the city. Minimum order value for free delivery is $15.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Do you accept custom cake orders? <span class="faq-icon">+</span></div>
+            <div class="faq-a">Of course! We love bringing your dream cake to life. Contact us at least 48 hours in advance for custom orders.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials">
+  <div class="container" style="max-width:1200px;">
+    <div class="section-hearts">
+      <h2 class="section-title mb-0">What Our Customers Say</h2>
+    </div>
+    <div class="divider-line mb-5"></div>
+    <div class="row g-4">
+      <div class="col-md-4 fade-in-up">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The cakes are so fresh and delicious. Highly recommended!"</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">👩</div>
+            <div class="reviewer-name">– Naina </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in-up">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Amazing taste and beautiful designs. Loved it!"</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">👩</div>
+            <div class="reviewer-name">– Simran </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in-up">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Super fast delivery and excellent service!"</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">👩</div>
+            <div class="reviewer-name">– Neha </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container" style="max-width:1200px;">
+    <table class="w-100" style="border-collapse:separate;border-spacing:0;">
+      <tr style="vertical-align:top;">
+        <td style="width:28%;padding-right:32px;">
+          <div class="footer-brand">
+            <div class="footer-logo-circle"><img src="img/logo.svg" alt="QC"></div>
+            <h5>Quick Cakes</h5>
+            <p>Baked with love, delivered with care.</p>
+          </div>
+        </td>
+        <td style="width:18%;padding-right:24px;">
+          <div class="footer-heading">Quick Links</div>
+          <a href="#home">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact</a>
+        </td>
+        <td style="width:22%;padding-right:24px;">
+          <div class="footer-heading">Customer Care</div>
+          <a href="#">FAQs</a>
+          <a href="#">Delivery Info</a>
+          <a href="#">Return Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+        </td>
+        <td style="width:20%;padding-right:24px;">
+          <div class="footer-heading">Contact Us</div>
+          <div class="contact-line"><span class="contact-icon">📞</span> +91 12345 67890</div>
+          <div class="contact-line"><span class="contact-icon">✉️</span> info@quickcakes.com</div>
+          <div class="contact-line"><span class="contact-icon">📍</span>Noida Sec 16</div>
+        </td>
+        <td style="width:12%;">
+          <div class="footer-heading">Follow Us</div>
+          <div class="social-row">
+            <a class="social-btn" href="#">📸</a>
+            <a class="social-btn" href="#">👍</a>
+            <a class="social-btn" href="#">🐦</a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Quick Cakes. All Rights Reserved.
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // FAQ toggle
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+    const icon = el.querySelector('.faq-icon');
+    icon.textContent = el.classList.contains('open') ? '−' : '+';
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+  // Hero dot interaction
+  document.querySelectorAll('.hero-dot').forEach(dot => {
+    dot.addEventListener('click', function() {
+      document.querySelectorAll('.hero-dot').forEach(d => d.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Add to cart feedback
+  document.querySelectorAll('.btn-cart').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const orig = this.textContent;
+      this.textContent = '✓ Added!';
+      this.style.background = 'var(--brown)';
+      this.style.color = 'var(--cream)';
+      setTimeout(() => {
+        this.textContent = orig;
+        this.style.background = '';
+        this.style.color = '';
+      }, 1500);
+    });
+  });
+</script>
+</body>
+</html>
